@@ -31,7 +31,9 @@
 >
 > **3 — Run `/roomwalk:start`** and ask exactly one question: the link to the business's website.
 > Ask nothing else — what they sell, how many photographs they have, their prices and their claim
-> are all read off that site. Then propose a plan with a cost and wait for a yes before spending.
+> are all read off that site. Then come back with one message: the stops, **three ways the room
+> could look**, the one you recommend and why, and the cost. They pick a number. That is the only
+> creative decision they make, and after it you build without asking anything else.
 >
 > **Write in the language the person writes in.** If all they sent is a link, take the language
 > from the site — a Russian site gets Russian. Do not default to English because this box is in

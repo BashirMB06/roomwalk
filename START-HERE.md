@@ -90,8 +90,10 @@ site in the next step: the categories, how many photographs sit behind each, the
 line they repeat about themselves. Asking someone to describe their own site is the fastest way
 to lose them.
 
-Then it comes back with a concrete plan and a price, and waits for a yes before spending
-anything.
+Then it comes back with **one** message: the stops it worked out from the site, **three ways
+the room could look**, which one it recommends and why, and the cost. They answer with a
+number and nothing more is asked of them — that single choice is the only creative decision
+they make, and everything after it is decided for them.
 
 ---
 
@@ -234,7 +236,10 @@ claude plugin install roomwalk@roomwalk
 сколько фотографий стоит за каждой, цены и та фраза, которую они о себе повторяют. Просить
 человека описать свой же сайт — самый быстрый способ его потерять.
 
-Дальше он возвращается с конкретным планом и ценой и ждёт «да», прежде чем что-то тратить.
+Дальше он возвращается **одним** сообщением: остановки, которые вывел с сайта, **три
+варианта, как может выглядеть помещение**, какой из них советует и почему, и цена. Человек
+отвечает цифрой — и больше его ни о чём не спрашивают. Этот единственный выбор и есть вся
+творческая часть, которую он делает; всё остальное решается за него.
 
 ## На каком языке отвечать
 

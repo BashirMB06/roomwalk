@@ -141,23 +141,69 @@ with no gallery — say so plainly and ask for exactly two things:
 
 Do not guess the business from its domain name. Do not proceed without photographs.
 
-### 3 · Propose the plan, then wait
+### 3 · Propose the plan with three looks, then wait
 
-Come back with something concrete — what you found, what you would build, what it costs.
-Not a questionnaire.
+Come back with something concrete — what you found, what you would build, what it costs,
+and **three ways the space could look**. Not a questionnaire. One message, one question at
+the end, and after they answer you do not ask again.
+
+The stops, their order and the cost are **your** call, worked out from the site. The only
+thing the visitor decides is **what the room looks like** — because that is the one part
+where there is no right answer to derive, and where handing someone a finished aesthetic
+they never chose is what makes a hero feel like it was made for somebody else.
 
 > Посмотрел сайт. Парфюмерная мастерская: авторские ароматы (34 фото), пробники (12),
 > подарочные наборы (21), свечи (18). Цены от 4 900 ₽. Работают с 2017 года, 4,9 в Яндексе.
 > Повторяющаяся фраза — «варим малыми партиями и подписываем каждый флакон».
 >
-> Предлагаю проход по бутику: полка с флаконами → тестерная стойка → подарочная упаковка →
-> прилавок, в конце открывается витрина. На каждой остановке всплывают ваши настоящие
-> фотографии этой категории и ведут в каталог.
+> Проход будет по бутику, четыре остановки: полка с флаконами → тестерная стойка →
+> подарочная упаковка → прилавок. На каждой всплывают ваши настоящие фотографии
+> этой категории и ведут в каталог.
 >
-> Черновик 480p — около 70 кредитов, минут двадцать. Финал 1080p — ещё 290. Делаем так?
+> Осталось выбрать, как выглядит само помещение:
+>
+> **1. Ваш интерьер.** Тёплое дерево, латунь, вечерний свет — то, что на ваших фотографиях.
+>
+> **2. Светлая лаборатория.** Белое и стеклянное, дневной свет, мензурки и весы на виду.
+> Читается как «варим сами», а не «перепродаём».
+>
+> **3. Тёмная витрина.** Приглушённый свет, стекло бликует, флаконы в пятнах света.
+> Дороже и тише.
+>
+> Советую **второй** — вы сами пишете, что варите малыми партиями, а этого не видно
+> ни на одной вашей фотографии.
+>
+> Черновик 480p — около 70 кредитов, минут двадцать. Какой берём?
 
-Three things it must contain: **the stops mapped to their real categories with counts**,
-**the cost**, and **one question at the end**. Wait for a yes before spending anything.
+Four things it must contain: **the stops mapped to their real categories with counts**,
+**three looks**, **the cost**, and **one question at the end**. Wait for an answer before
+spending anything.
+
+**How to build the three.** Not three flavours of the same room — three genuinely different
+readings of the business, each defensible from the site:
+
+- **One is always their own place**, rebuilt from their photographs — same materials, same
+  light. The safe one, and often the right one.
+- **One leads with what they claim about themselves** but do not show. Almost every site has
+  a sentence they repeat and no photograph to back it: *«варим малыми партиями»*,
+  *«доказательный подход»*, *«один мастер, один клиент»*. That sentence is a look.
+- **One changes the register** — darker, quieter, more expensive; or brighter and plainer.
+  Same business, different room temperature.
+
+Two lines each, describing **what is in frame** — light, materials, what the camera passes.
+Not adjectives about mood. «Белое и стеклянное, дневной свет, мензурки на виду» tells them
+what they will see; «современно и свежо» tells them nothing.
+
+**Recommend one, and give the reason from their site, not from taste.** «Совпадёт с вашими
+фотографиями, которые висят рядом на остановках» is a reason. «Мне так красивее» is not.
+The strongest reason is usually one of these two: the look matches the real photographs that
+sit beside it, so the join between generated and real does not show; or the look says the
+thing they claim about themselves and never illustrate.
+
+**If they pick one, that is the whole conversation.** Do not follow up with questions about
+palette, mood or camera. Everything else you decide, and you decide it in step 4 by writing
+their choice into the establishing prompt. If they ask for something you did not offer, take
+it — but hold the one-space rule and the stop range.
 
 Pick **four to six stops**. Fewer and it is not a walk; more and you cross into a second
 space, which is where continuity dies (§ 7). A category with no real photographs behind it
@@ -166,6 +212,10 @@ is decoration — cut it.
 If they want different stops, take theirs, but hold the one-space rule and the range.
 
 ### 4 · Establish the space
+
+Build this shot from **the look they chose in step 3** — its light, its materials, its
+register. That choice is the brief now; do not quietly drift back to whatever you would
+have made on your own.
 
 Generate one wide establishing shot with `generate_image` (`nano_banana_pro`, 2k, 16:9)
 that **names the layout explicitly by wall**:
