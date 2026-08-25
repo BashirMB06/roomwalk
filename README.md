@@ -127,7 +127,7 @@ Prefer it by hand:
 | | |
 | --- | --- |
 | **Higgsfield MCP** | Add `https://mcp.higgsfield.ai/mcp` through the connector UI at claude.ai. **Not** via `claude mcp login` — see below. |
-| **Swift** | `swiftc`, from Xcode Command Line Tools. The frame tools are AVFoundation; ffmpeg is not needed. |
+| **Python 3** | `python3 -m pip install --user pillow numpy imageio-ffmpeg`. Runs on **macOS, Windows and Linux**; `imageio-ffmpeg` carries its own ffmpeg, so nothing is installed system-wide. |
 | **Real photographs** | Your own — pulled off your site automatically. Without them there is no proof layer. |
 | **Credits** | A five-stop draft runs about 60–80 credits at 480p. |
 
@@ -157,13 +157,15 @@ claude.ai UI also works if you would rather click than run a script.
 ```
 skills/roomwalk/
   SKILL.md                    the pipeline, the rules, the failure modes
-  tools/extract_frames.swift  video → numbered frames + manifest (AVFoundation)
-  tools/measure_seams.swift   how visible is each join, in numbers
-  tools/measure_flicker.swift per-frame brightness jitter and loop-seam distance
-  tools/blend_seam.swift      soften a mild join without spending credits
-  tools/preview_hero.swift    composite a frame with gradients + caption to PNG
-  tools/brightness_curve.swift  chart exposure drift per frame and per segment
-  tools/stabilise_exposure.swift  pull every frame to a common median
+  tools/extract_frames.py     video → numbered frames + manifest (imageio-ffmpeg)
+  tools/measure_seams.py      how visible is each join, in numbers
+  tools/measure_flicker.py    per-frame brightness jitter and loop-seam distance
+  tools/blend_seam.py         soften a mild join without spending credits
+  tools/preview_hero.py       composite a frame with gradients + caption to PNG
+  tools/brightness_curve.py   chart exposure drift per frame and per segment
+  tools/stabilise_exposure.py pull every frame to a common median
+  tools/_frames.py            shared frame reading and luma maths
+  tools/*.swift               the original macOS-only versions, kept for reference
   tools/connect_higgsfield.py Higgsfield sign-in that works around the RFC 9207 bug
   web/scroll_frames.js        canvas scroll engine with a pacing timeline
 skills/exploded/

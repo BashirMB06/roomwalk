@@ -68,8 +68,16 @@ several different things in the place they belong.
 
    `--refresh` renews an expired token without a new sign-in; `--status` reports what is
    configured.
-2. **Swift.** `swiftc` ships with Xcode Command Line Tools. The frame tools are AVFoundation
-   — ffmpeg is not required and is usually absent on a designer's Mac.
+2. **Python 3 with three packages.** The frame tools run on macOS, Windows and Linux alike:
+
+   ```bash
+   python3 -m pip install --user pillow numpy imageio-ffmpeg
+   ```
+
+   `imageio-ffmpeg` brings its own ffmpeg binary, so nothing has to be installed system-wide.
+   Run this once, before step 8; if an import fails the tool says exactly this line.
+   (The `.swift` files beside them are the original macOS-only versions, kept for reference.
+   Use the Python ones — they are the tested path and they work everywhere.)
 3. **The business's real photographs.** Pulled from their own site in step 2. Without them
    this skill has no proof layer and should not be run.
 4. **Credits.** A five-stop draft costs roughly 60–80 credits at 480p. Always preflight with
@@ -228,8 +236,7 @@ below the hero. A business's real photograph of the thing beats a generated one 
 ### 8 · Slice to frames
 
 ```bash
-swiftc -O tools/extract_frames.swift -o extract_frames
-./extract_frames segment.mp4 ./out --count 120 --width 864 --quality 0.66
+python3 tools/extract_frames.py segment.mp4 ./out --count 120 --width 864 --quality 0.66
 ```
 
 **120 frames per 8-second segment.** Sixty is not enough — it samples at 7.5 fps and
@@ -247,9 +254,12 @@ Concatenate the segments into one numbered run and write a combined manifest.
 ### 9 · Measure the seams
 
 ```bash
-swiftc -O tools/measure_seams.swift -o measure_seams
-./measure_seams ./frames 120
+python3 tools/measure_seams.py ./frames 120
+python3 tools/measure_seams.py ./frames --seams 240,360   # дубли разной длины
 ```
+
+Use `--seams` whenever the takes are not all the same length — a 15-second take followed by
+two 8-second ones does not divide into equal blocks, and that is the normal case.
 
 Compares the gap at each join against the median frame-to-frame change inside the segments.
 Read it as: **under 2× invisible, 2–5× slightly visible, over 5× torn**.
@@ -258,8 +268,7 @@ A torn seam means that segment never reached its anchor. Regenerate it chained f
 tail. A slightly-visible seam can be softened without spending credits:
 
 ```bash
-swiftc -O tools/blend_seam.swift -o blend_seam
-./blend_seam ./frames 480 20      # frame index of the join, blend width
+python3 tools/blend_seam.py ./frames 480 20      # frame index of the join, blend width
 ```
 
 Blending caps out around 2.5× — it cannot rescue a torn seam, only polish a mild one.
@@ -272,11 +281,8 @@ playback speed nobody notices. Scrubbed slowly by a scroll wheel it reads exactl
 sun appears and then goes away"* — and it was the first thing the client complained about.
 
 ```bash
-swiftc -O tools/brightness_curve.swift -o brightness_curve
-./brightness_curve ./frames 120            # see the drift, per segment
-
-swiftc -O tools/stabilise_exposure.swift -o stabilise_exposure
-./stabilise_exposure ./frames              # pull every frame to the common median
+python3 tools/brightness_curve.py ./frames 120        # see the drift, per segment
+python3 tools/stabilise_exposure.py ./frames          # pull every frame to the common median
 ```
 
 The gain is clamped, so places that are genuinely darker — the inside of a cupboard, shadow

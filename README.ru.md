@@ -71,7 +71,7 @@ Higgsfield заявлен `issuer: https://mcp.higgsfield.ai`, а редирек
 | | |
 | --- | --- |
 | **Higgsfield** | аккаунт с кредитами и подключённый коннектор |
-| **Swift** | `swiftc` из Xcode Command Line Tools — инструменты кадров на AVFoundation, ffmpeg не нужен |
+| **Python 3** | `python3 -m pip install --user pillow numpy imageio-ffmpeg`. Работает на **macOS, Windows и Linux**; `imageio-ffmpeg` приносит свой ffmpeg, в систему ставить нечего |
 | **Свои фотографии** | настоящие снимки работ. Без них слоя доказательства нет, и скилл откажется собирать |
 | **Кредиты** | черновик прохода на пять остановок — 60–80, разборка — около 10 |
 

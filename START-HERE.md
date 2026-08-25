@@ -121,8 +121,10 @@ Watch, bottle, sneaker, chair, tool, jar, lamp → **explode**.
 
 ## What is needed on the machine
 
-- **macOS with Xcode Command Line Tools** (`swiftc`). Frames are sliced with AVFoundation, so
-  **ffmpeg is not required** — and it is usually absent on a designer's Mac.
+- **Python 3**, plus three packages installed once:
+  `python3 -m pip install --user pillow numpy imageio-ffmpeg`.
+  This runs on **macOS, Windows and Linux** alike, and `imageio-ffmpeg` brings its own ffmpeg,
+  so nothing has to be installed system-wide.
 - **Higgsfield credits.** A 480p draft runs roughly 60–120 for a walk, 25 for an exploded view.
   A 1080p final is a few hundred more. Always preflight with `get_cost: true`.
 - **The business's own photographs**, pulled from their own site. Without them there is no proof
@@ -253,8 +255,10 @@ claude plugin install roomwalk@roomwalk
 
 ## Что нужно на машине
 
-- **macOS с Xcode Command Line Tools** (`swiftc`). Кадры режутся через AVFoundation,
-  **ffmpeg не нужен** — а его на маке дизайнера обычно и нет.
+- **Python 3** и три пакета, ставятся один раз:
+  `python3 -m pip install --user pillow numpy imageio-ffmpeg`.
+  Работает одинаково на **macOS, Windows и Linux**, а `imageio-ffmpeg` приносит свой ffmpeg,
+  так что отдельно в систему ничего ставить не надо.
 - **Кредиты Higgsfield.** Черновик 480p — примерно 60–120 на проход и 25 на разбор предмета.
   Финал 1080p — ещё несколько сотен. Всегда сверяйтесь через `get_cost: true`.
 - **Настоящие фотографии бизнеса** с их же сайта. Без них нет слоя доказательства,

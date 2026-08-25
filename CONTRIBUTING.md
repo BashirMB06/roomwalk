@@ -2,7 +2,7 @@
 
 *[гайд по-русски](README.ru.md) · [English README](README.md)*
 
-Плагин почти целиком состоит из прозы. Код здесь — шесть маленьких утилит на Swift и
+Плагин почти целиком состоит из прозы. Код здесь — семь маленьких утилит на Python и
 один движок скролла; всё остальное — два `SKILL.md`, которые читает Claude и по которым
 он действует. Поэтому «доработать» тут чаще означает **переписать инструкцию**, а не
 поправить функцию.
@@ -17,13 +17,15 @@ plugins/roomwalk/
   .claude-plugin/plugin.json        имя, версия, автор, ключевые слова
   skills/roomwalk/
     SKILL.md                        конвейер прохода: 11 шагов, правила, режимы отказа
-    tools/extract_frames.swift      видео → нумерованные кадры + manifest.json (AVFoundation)
-    tools/measure_seams.swift       насколько виден каждый стык, в числах
-    tools/measure_flicker.swift     покадровое дрожание яркости и расстояние по шву петли
-    tools/blend_seam.swift          смягчить слабый стык, не тратя кредиты
-    tools/preview_hero.swift        собрать кадр с градиентами и подписью в PNG
-    tools/brightness_curve.swift    график дрейфа экспозиции по кадрам и сегментам
-    tools/stabilise_exposure.swift  привести все кадры к общей медиане
+    tools/extract_frames.py      видео → нумерованные кадры + manifest.json (imageio-ffmpeg)
+    tools/measure_seams.py       насколько виден каждый стык, в числах
+    tools/measure_flicker.py     покадровое дрожание яркости и расстояние по шву петли
+    tools/blend_seam.py          смягчить слабый стык, не тратя кредиты
+    tools/preview_hero.py        собрать кадр с градиентами и подписью в PNG
+    tools/brightness_curve.py    график дрейфа экспозиции по кадрам и сегментам
+    tools/stabilise_exposure.py  привести все кадры к общей медиане
+    tools/_frames.py             общее: чтение кадров и арифметика яркости
+    tools/*.swift                исходные версии только под macOS, оставлены для истории
     tools/connect_higgsfield.py     вход в Higgsfield в обход бага RFC 9207
     web/scroll_frames.js            движок скролла на канвасе с таймлайном ритма
   skills/exploded/
@@ -56,7 +58,7 @@ claude plugin list
 ```
 
 Правки в `SKILL.md` подхватываются при следующем запуске сессии — перезапустите Claude Code
-после изменения. Правки в `.swift` перекомпилируются при вызове, отдельного шага сборки нет.
+после изменения. Правки в `.py` подхватываются сразу, шага сборки нет вовсе.
 
 Когда закончите — снимите локальную витрину, чтобы не жить на двух копиях сразу:
 

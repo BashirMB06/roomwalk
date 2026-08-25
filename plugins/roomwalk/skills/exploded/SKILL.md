@@ -50,7 +50,8 @@ JPEG, so a 700-frame sequence lands much lighter than the same count of a lit in
 
    Hand the user the sign-in link it prints. `claude mcp login higgsfield` does not work —
    see the `roomwalk` skill for why.
-2. **Swift**, for the frame tools. `swiftc` ships with Xcode Command Line Tools.
+2. **Python 3**, for the frame tools: `python3 -m pip install --user pillow numpy imageio-ffmpeg`.
+   Works on macOS, Windows and Linux; `imageio-ffmpeg` carries its own ffmpeg.
 3. **A photograph of the real product**, if the product is real. See § Honesty.
 4. **Credits.** Measured on `seedance_2_5`, 10 seconds, both ends anchored: **25 credits at
    480p, 65 at 1080p**. Always run the draft first — the 480p tells you whether the motion is
@@ -142,16 +143,16 @@ is 240 source frames — plenty for a 700-frame sequence after slicing.
 ### 5 · Slice, then check the void — don't reflexively stabilise
 
 ```bash
-swiftc -O ../roomwalk/tools/extract_frames.swift -o extract_frames
-./extract_frames hero.mp4 ./frames --count 240 --width 1280 --quality 0.7
+# нарезка — тот же инструмент, что и в roomwalk
+python3 ../roomwalk/tools/extract_frames.py hero.mp4 ./frames --count 240 --width 1280 --quality 0.7
 ```
 
 On black, the frames are small — a flat background costs almost nothing — so you can afford
 more of them and a wider frame than a walkthrough allows.
 
 ```bash
-swiftc -O ../roomwalk/tools/brightness_curve.swift -o brightness_curve
-./brightness_curve ./frames
+# график экспозиции
+python3 ../roomwalk/tools/brightness_curve.py ./frames
 ```
 
 **Mean frame brightness rises across every exploded take, and that is usually correct.** As
