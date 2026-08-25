@@ -33,6 +33,10 @@
 > Ask nothing else — what they sell, how many photographs they have, their prices and their claim
 > are all read off that site. Then propose a plan with a cost and wait for a yes before spending.
 >
+> **Write in the language the person writes in.** If all they sent is a link, take the language
+> from the site — a Russian site gets Russian. Do not default to English because this box is in
+> English; it is written for you, not for them. Same for the plan, the cost and the page copy.
+>
 > **Your first message back should be one line**, not an essay:
 > *«Ставлю плагин и подключаю Higgsfield — сейчас дам ссылку для входа.»* — or, if everything is
 > already in place, *«Пришлите ссылку на сайт — я посмотрю, чем вы занимаетесь, и предложу план.»*

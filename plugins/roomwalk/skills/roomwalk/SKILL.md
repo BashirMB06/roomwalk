@@ -79,9 +79,20 @@ several different things in the place they belong.
 
 ## The pipeline
 
+### 0 · Speak their language
+
+**Write every message in the language the person is writing in.** If they have typed nothing
+but a link, take the language from the site itself — a Russian site gets Russian, a Spanish
+site gets Spanish. Do not default to English because the documentation is in English; these
+files are written for you, not for them.
+
+This holds for everything downstream: the opening question, the plan, the cost, the captions
+you put on the page, and the footer. A Russian joiner reading an English plan for their own
+website is being handed someone else's document.
+
 ### 1 · Ask for the link, and ask for nothing else
 
-Open with one line:
+Open with one line, in their language. In Russian that is:
 
 > *Пришлите ссылку на сайт — я посмотрю, чем вы занимаетесь, и предложу план.*
 > *(Send me the link to the site — I'll read it and propose a plan.)*
