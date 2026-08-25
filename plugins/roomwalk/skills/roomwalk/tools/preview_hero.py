@@ -18,26 +18,59 @@ from _frames import fail
 # Шрифт ищем по системе: на каждой ОС он лежит своим путём, а тащить файл
 # в репозиторий ради превью не стоит.
 FONT_CANDIDATES = [
-    "/System/Library/Fonts/Supplemental/Georgia.ttf",
-    "/System/Library/Fonts/Supplemental/Times New Roman.ttf",
-    "/Library/Fonts/Arial.ttf",
-    "/System/Library/Fonts/Helvetica.ttc",
-    "C:/Windows/Fonts/georgia.ttf",
+    # Сначала те, что покрывают и кириллицу, и знаки валют: подпись на странице
+    # почти всегда «от 320 ₽», а Georgia и Times рубль не знают и рисуют квадрат.
+    # NewYork здесь нет намеренно: это вариативный шрифт, Pillow берёт из него
+    # не тот глиф на ₽ и путает ширины пробелов.
+    "/System/Library/Fonts/SFNS.ttf",
+    "/System/Library/Fonts/HelveticaNeue.ttc",
+    "C:/Windows/Fonts/segoeui.ttf",
     "C:/Windows/Fonts/arial.ttf",
     "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf",
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
     "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf",
+    "/usr/share/fonts/truetype/noto/NotoSerif-Regular.ttf",
+    # запасные: красивые, но покрытие уже, берутся только если ничего выше нет
+    "/System/Library/Fonts/Supplemental/Georgia.ttf",
+    "/System/Library/Fonts/Supplemental/Times New Roman.ttf",
+    "/Library/Fonts/Arial.ttf",
 ]
 
 
-def load_font(size):
-    for path in FONT_CANDIDATES:
-        if os.path.isfile(path):
-            try:
-                return ImageFont.truetype(path, size)
-            except OSError:
+# Подписи бывают с рублём, лари и кириллицей сразу, а Georgia на маке рубль
+# не покрывает и рисует пустой квадрат. AppKit подставлял шрифт сам, Pillow —
+# нет, поэтому покрытие проверяем руками: рисуем символ и сравниваем с заведомо
+# отсутствующим глифом. Совпало — значит это тот самый квадрат, берём следующий.
+PROBE = "\uE000"  # приватная область: глифа нет ни в одном нормальном шрифте
+
+
+def _covers(font, text):
+    try:
+        blank = bytes(font.getmask(PROBE))
+        for ch in text:
+            if ch.isspace():
                 continue
-    return ImageFont.load_default()
+            if bytes(font.getmask(ch)) == blank:
+                return False
+    except Exception:
+        return True
+    return True
+
+
+def load_font(size, text=""):
+    fallback = None
+    for path in FONT_CANDIDATES:
+        if not os.path.isfile(path):
+            continue
+        try:
+            font = ImageFont.truetype(path, size)
+        except OSError:
+            continue
+        if fallback is None:
+            fallback = font
+        if not text or _covers(font, text):
+            return font
+    return fallback or ImageFont.load_default()
 
 
 def main(argv):
@@ -73,8 +106,8 @@ def main(argv):
 
     pad = max(20, int(W * 0.043))
     if caption:
-        f_title = load_font(max(22, int(W * 0.046)))
-        f_note = load_font(max(12, int(W * 0.0115)))
+        f_title = load_font(max(22, int(W * 0.046)), caption)
+        f_note = load_font(max(12, int(W * 0.0115)), note)
         y = H - pad
         if note:
             box = draw.textbbox((0, 0), note, font=f_note)
