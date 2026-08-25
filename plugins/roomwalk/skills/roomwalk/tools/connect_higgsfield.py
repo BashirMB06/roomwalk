@@ -187,8 +187,14 @@ def login():
     print(f"  {auth_url}")
     print()
     print(f"Waiting for you to finish (up to {WAIT_SECONDS // 60} minutes)…")
-    if sys.platform == "darwin":
-        subprocess.run(["open", auth_url], check=False)
+    # Открыть браузер сами, если получится. Раньше здесь был macOS-only `open`,
+    # из-за чего на Windows и Linux ссылку приходилось нести руками. Ссылка
+    # печатается выше в любом случае, так что неудача здесь ничего не ломает.
+    try:
+        import webbrowser
+        webbrowser.open(auth_url)
+    except Exception:
+        pass
 
     if not done.wait(timeout=WAIT_SECONDS):
         srv.shutdown()
